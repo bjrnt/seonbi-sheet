@@ -1,0 +1,24 @@
+{
+  "name": "seonbi-sheet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc && node ./dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@bjrnt/seonbi-core": "^0.2.1",
+    "@types/debug": "0.0.30",
+    "@types/lodash": "^4.14.82",
+    "@types/node": "^8.0.45",
+    "debug": "^3.1.0",
+    "google-auth-library": "^0.11.0",
+    "googleapis": "^22.2.0",
+    "lodash": "^4.17.4",
+    "typescript": "^2.5.3"
+  }
+}
