@@ -45,7 +45,7 @@ export function getWords(
               return true
             }
             // Explanation column
-            return row[2] != null
+            return row[2] == null
           })
           // Korean column
           .map((value: string[]) => value[0])
