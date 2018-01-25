@@ -1,4 +1,4 @@
-import { flatten } from 'lodash'
+// import { flatten } from 'lodash'
 const google = require('googleapis')
 const sheets = google.sheets('v4')
 
@@ -24,19 +24,32 @@ export function getColumns(auth: AuthClient): Promise<string[]> {
   })
 }
 
-export function getWords(auth: AuthClient): Promise<string[]> {
+export function getWords(
+  auth: AuthClient,
+  options: { onlyUnanswered?: boolean } = {}
+): Promise<string[]> {
   return new Promise((resolve, reject) => {
     sheets.spreadsheets.values.get(
       {
         auth,
         spreadsheetId,
-        range: 'A2:A300',
+        range: 'A2:C300',
       },
       (err: any, response: any) => {
         if (err) {
           return reject(err)
         }
-        resolve(flatten(response.values))
+        const words = response.values
+          .filter((row: string[]) => {
+            if (!options.onlyUnanswered) {
+              return true
+            }
+            // Explanation column
+            return row[2] != null
+          })
+          // Korean column
+          .map((value: string[]) => value[0])
+        resolve(words)
       }
     )
   })
